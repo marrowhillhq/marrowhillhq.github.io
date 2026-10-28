@@ -1,0 +1,42 @@
+<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Side Hustle Tax Checker UK 2026-27 | Marrow Hill</title><meta name="description" content="Free UK checker: do you owe tax or need to tell HMRC about Vinted, eBay, Etsy or Gumroad income? Includes the £1,000 trading allowance."><link rel="canonical" href="https://marrowhill.co.uk/tax-checker.html"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="favicon.png"><link rel="stylesheet" href="style.css"></head><body>
+<header class="top"><div class="w"><a class="brand" href="index.html"><svg viewBox="0 0 200 130" aria-hidden="true"><defs><mask id="hm"><rect width="200" height="130" fill="#000"/><path d="M10 128C10 60 58 8 100 8s90 52 90 120z" fill="#fff"/><rect y="36" width="200" height="5"/><rect y="58" width="200" height="5"/><rect y="80" width="200" height="5"/><rect y="102" width="200" height="5"/></mask></defs><rect width="200" height="130" fill="#e0a030" mask="url(#hm)"/></svg><span>Marrow Hill<small>Small-batch makers · UK</small></span></a><nav><a href="shop.html">Shop</a><a href="fpv-goggle-battery-case.html">FPV</a><a href="shop.html#handmade">Handmade</a><a href="about.html">About</a><a href="contact.html">Custom work</a></nav></div></header>
+<main class="w">
+<h1>Do I owe tax on my side hustle?</h1>
+<p>Free UK checker for people selling on Vinted, eBay, Etsy, Gumroad and similar. Takes 30 seconds. Nothing you enter leaves your device.</p>
+<div class="card"><form id="f">
+<label>Money received from selling this tax year (6 April to 5 April), £<input id="inc" type="number" min="0" step="any" value="0"></label>
+<label>Costs of running it (stock, postage, fees, packaging, mileage), £<input id="exp" type="number" min="0" step="any" value="0"></label>
+<label>Your other taxable income for the year (job, pension), £<input id="oth" type="number" min="0" step="any" value="0"></label>
+<label>Is this occasional selling of your own stuff, or do you buy to resell or make things to sell?
+<select id="kind"><option value="own">Mostly my own unwanted items</option><option value="trade" selected>I buy/make things to sell, or sell regularly</option></select></label>
+<button type="submit">Check</button></form></div>
+<div id="r" class="card res" aria-live="polite"></div>
+<p class="mut">Estimate only. Uses 2026-27 rates: personal allowance £12,570, 20% to £50,270, 40% to £125,140, 45% above, and Class 4 National Insurance at 6% between £12,570 and £50,270 and 2% above. Ignores Scottish rates, student loans, tax credits and other adjustments.</p>
+<div class="card"><b>Want this done for you?</b><p>The <a href="https://marrowhill.gumroad.com/l/vqiohp">UK Side Hustle Tax Tracker (Excel, £9)</a> keeps your income, expenses and mileage in one place and shows whether the £1,000 allowance or actual expenses is better for you. Or get it with a fee calculator and security guide in the <a href="https://marrowhill.gumroad.com/l/outxsf">Starter Bundle (£19)</a>.</p></div>
+<h2>Read more</h2><ul>
+<li><a href="vinted-ebay-etsy-tax.html">Do I pay tax on Vinted, eBay and Etsy sales?</a></li>
+<li><a href="trading-allowance.html">The £1,000 trading allowance explained</a></li>
+<li><a href="do-i-need-to-tell-hmrc.html">Do I need to tell HMRC about my side income?</a></li></ul>
+<script>
+const PA=12570,B=50270,H=125140;
+function tax(x){return .2*Math.max(0,Math.min(x,B)-PA)+.4*Math.max(0,Math.min(x,H)-B)+.45*Math.max(0,x-H)}
+function c4(p){return .06*Math.max(0,Math.min(p,B)-PA)+.02*Math.max(0,p-B)}
+const g=n=>"£"+Math.round(n).toLocaleString("en-GB");
+document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();
+const inc=+document.getElementById("inc").value||0,exp=+document.getElementById("exp").value||0,oth=+document.getElementById("oth").value||0,kind=document.getElementById("kind").value;
+const r=document.getElementById("r");let h="";
+if(kind==="own"){h="<p class='big'>Probably no tax to pay</p><p>Selling your own unwanted belongings for less than you paid is generally not trading, so it is generally not taxable income. Gains on a few items such as valuable collectibles can still matter. If you start buying things to resell, answer the form again as a trader.</p>";}
+else if(inc<=1000){h="<p class='big'>No tax, and normally no need to tell HMRC</p><p>Your income of "+g(inc)+" is within the £1,000 trading allowance, which is generally tax-free and does not usually need reporting. Keep your records anyway, and check again if you get close to £1,000.</p>";}
+else{
+const profit=Math.max(0,inc-exp),allow=Math.max(0,inc-1000);
+const best=Math.min(profit,allow),use=allow<profit?"the £1,000 allowance":"your actual expenses";
+const extra=tax(oth+best)-tax(oth)+c4(best);
+h="<p class='big'>You are over the £1,000 allowance</p><p>You will usually need to register for Self Assessment and file a tax return. Register by <b>5 October</b> after the tax year ends.</p>"+
+"<table><tr><th></th><th>Taxable profit</th></tr><tr><td>Use the £1,000 allowance</td><td>"+g(allow)+"</td></tr><tr><td>Claim actual expenses</td><td>"+g(profit)+"</td></tr></table>"+
+"<p>Cheaper for you: <b>"+use+"</b> (taxable "+g(best)+").</p><p class='big'>Estimated extra tax and NI: about "+g(Math.max(0,extra))+"</p>"+
+"<p class='mut'>You cannot use both on the same income. Profits of "+g(best)+" may also affect other things, such as Child Benefit or tax-free childcare, if your total income is high.</p>";}
+r.innerHTML=h;r.className="card res on";r.scrollIntoView({behavior:"smooth"});});
+</script><div class="src"><b>Sources (GOV.UK)</b><a href="https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income">Tax on trading and property income allowances</a> &middot; <a href="https://www.gov.uk/income-tax-rates">Income Tax rates and Personal Allowance</a> &middot; <a href="https://www.gov.uk/register-for-self-assessment">Register for Self Assessment</a><br><span class="mut">Last reviewed: October 2026. Rules and rates can change, so check GOV.UK for the latest.</span></div></main>
+<footer><div class="w"><div class="cols"><div><b>Shop</b><a href="fpv-goggle-battery-case.html">FPV goggle battery case</a><a href="betafpv-usb-cable.html">BetaFPV USB cable</a><a href="shop.html#handmade">Handmade</a><a href="https://www.etsy.com/uk/shop/MarrowHillUK">Etsy shop</a></div><div><b>Guides and tools</b><a href="tax-checker.html">Side hustle tax checker</a><a href="vinted-ebay-etsy-tax.html">Vinted, eBay and Etsy tax</a><a href="trading-allowance.html">£1,000 trading allowance</a><a href="do-i-need-to-tell-hmrc.html">Telling HMRC</a></div><div><b>Marrow Hill</b><a href="about.html">About</a><a href="contact.html">Contact and custom orders</a><a href="privacy.html">Privacy</a></div></div>
+<p>Tax guides: general information only, not tax advice. Marrow Hill is not an accountant or HMRC. Figures are for the 2026-27 UK tax year and may change. Check GOV.UK or ask an accountant before filing.</p><p>Designed, printed and made by hand in the UK. Marrow Hill is not made by or affiliated with Fat Shark, Alien, BETAFPV or any other brand mentioned, which are named only to show what our parts fit.</p>
+<p>&copy; Marrow Hill, United Kingdom</p></div></footer></body></html>
